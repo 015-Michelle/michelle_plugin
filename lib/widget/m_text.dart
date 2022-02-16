@@ -3,10 +3,11 @@ import 'package:michelle_plugin/common/widget/m_error_widget.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_text_model.dart';
 import 'package:michelle_plugin/utils/text_util.dart';
+import 'package:michelle_plugin/widget/m_base_widget.dart';
 
-class MText extends StatefulWidget {
+class MText extends MBaseWidget {
   final MTextModel mTextModel;
-  const MText({Key? key, required this.mTextModel}) : super(key: key);
+  const MText({Key? key, required this.mTextModel}) : super(key: key, mType: MType.text);
 
   @override
   _MTextState createState() => _MTextState();
