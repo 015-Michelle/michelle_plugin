@@ -40,7 +40,7 @@ class MLocalCacheNetworkImage extends ImageProvider<NetworkImage> implements Net
     final StreamController<ImageChunkEvent> chunkEvents = StreamController<ImageChunkEvent>();
 
     return MultiFrameImageStreamCompleter(
-      codec: _loadAsync(key as NetworkImage, chunkEvents, decode),
+      codec: _loadAsync(key, chunkEvents, decode),
       chunkEvents: chunkEvents.stream,
       scale: key.scale,
       debugLabel: key.url,
