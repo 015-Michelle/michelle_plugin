@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'm_event_type.g.dart';
+
 enum MEventType {
   url,
   product,
@@ -29,14 +31,7 @@ class MEvent {
 
   MEvent(this.type, this.config, {this.name, this.tag, this.eventElse});
 
-  factory MEvent.fromString(
-    String type,
-    String config, {
-    String? name,
-    String? tag,
-    List? eventElse,
-  }) {
-    var mEventType = _convertStringToEventType(type);
-    return MEvent(mEventType, config, tag: tag, name: name, eventElse: eventElse);
-  }
+  factory MEvent.fromJson(Map<String, dynamic> srcJson) => _$MEventFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$MEventToJson(this);
 }
