@@ -1,5 +1,6 @@
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
+import 'package:michelle_plugin/model/m_product_model.dart';
 import 'package:michelle_plugin/model/m_text_model.dart';
 
 class MBaseWidgetModel {
@@ -15,7 +16,7 @@ class MBaseWidgetModel {
       case MType.image:
         return MImageModel.fromJson(config);
       case MType.product:
-        return MImageModel.fromJson(config);
+        return MProductModel.fromJson(config);
       default: //todo
         throw Exception();
     }
