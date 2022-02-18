@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:michelle_plugin/constant/m_transparent_image.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/m_local_cache_network_image.dart';
+import 'package:michelle_plugin/utils/size_util.dart';
 
 class MCachedImage extends StatelessWidget {
   final double? imgWidth;
@@ -38,8 +39,8 @@ class MCachedImage extends StatelessWidget {
             ),
       child: Container(
         color: color,
-        width: imgWidth?.toDouble(),
-        height: imgHeight?.toDouble(),
+        width: imgWidth?.toDouble().a,
+        height: imgHeight?.toDouble().a,
         child: Image(
           image: MLocalCacheNetworkImage(url),
           loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
