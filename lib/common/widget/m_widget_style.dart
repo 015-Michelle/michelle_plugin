@@ -12,7 +12,10 @@ class MWidgetStyle extends StatelessWidget {
     if (text == null) {
       return Container();
     }
-    return Container(margin: EdgeInsets.symmetric(vertical: 2.a), child: _buildContent());
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: type == MWidgetStyleType.tag ? 0 : 2.a),
+      child: _buildContent(),
+    );
   }
 
   Widget _buildContent() {
@@ -48,12 +51,12 @@ class MWidgetStyle extends StatelessWidget {
         );
       case MWidgetStyleType.tag:
         return Container(
-          height: 40.a,
-          width: 40.a,
+          height: 30.a,
+          width: 30.a,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(2.a),
-              bottomRight: Radius.circular(4.a),
+              bottomLeft: Radius.circular(22.a),
+              bottomRight: Radius.circular(22.a),
             ),
             gradient: const LinearGradient(
               colors: [Colors.orange, Colors.deepOrange, Colors.red],
@@ -61,7 +64,13 @@ class MWidgetStyle extends StatelessWidget {
               end: Alignment.topCenter,
             ),
           ),
-          child: Text("$text"),
+          padding: EdgeInsets.symmetric(horizontal: 2.a, vertical: 1.a),
+          alignment: Alignment.center,
+          child: Text(
+            "$text",
+            style: TextStyle(color: Colors.white, fontSize: 12.a, fontWeight: FontWeight.w300),
+            textAlign: TextAlign.center,
+          ),
         );
       default:
         return Text("$text", style: const TextStyle(color: Colors.black));
