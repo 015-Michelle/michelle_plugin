@@ -1,40 +1,42 @@
 import 'package:flutter/cupertino.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_base_widget_model.dart';
+import 'package:michelle_plugin/model/m_style_model.dart';
 
+part 'm_text_model.g.dart';
+
+@JsonSerializable()
 class MTextModel extends MBaseWidgetModel {
   final String data;
-  final Key? key;
-  TextStyle? style;
-  StrutStyle? strutStyle;
-  TextAlign? textAlign;
-  TextDirection? textDirection;
-  Locale? locale;
+  MTextStyle? style;
+  String? textAlign;
   bool? softWrap;
-  TextOverflow? overflow;
+  String? overflow;
   double? textScaleFactor;
   int? maxLines;
   String? semanticsLabel;
-  TextWidthBasis? textWidthBasis;
-  TextHeightBehavior? textHeightBehavior;
+  String? textWidthBasis;
+  MItemPadding? mItemPadding;
+  MItemMargin? mItemMargin;
+  MTextDecoration? mTextDecoration;
+
   MTextModel(
     this.data, {
-    this.key,
     this.style,
-    this.strutStyle,
     this.textAlign,
-    this.textDirection,
-    this.locale,
     this.softWrap,
     this.overflow,
     this.textScaleFactor,
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,
-    this.textHeightBehavior,
+    this.mItemPadding,
+    this.mItemMargin,
+    this.mTextDecoration,
   }) : super(mType: MType.text);
 
-  factory MTextModel.fromJson(Map<String, dynamic> json) {
-    return MTextModel(json['data']);
-  }
+  factory MTextModel.fromJson(Map<String, dynamic> json) => _$MTextModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MTextModelToJson(this);
 }

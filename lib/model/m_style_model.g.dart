@@ -69,11 +69,14 @@ Map<String, dynamic> _$MItemMarginToJson(MItemMargin instance) =>
     };
 
 MTextStyle _$MTextStyleFromJson(Map<String, dynamic> json) => MTextStyle(
-      json['color'] as String,
-      json['background'] as String,
-      json['fontSize'] as String,
-      json['fontWeight'] as String,
-    );
+      json['color'] as String?,
+      json['background'] as String?,
+      json['fontSize'] as String?,
+      json['fontWeight'] as String?,
+    )..mTextDecoration = json['mTextDecoration'] == null
+        ? null
+        : MTextDecoration.fromJson(
+            json['mTextDecoration'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$MTextStyleToJson(MTextStyle instance) =>
     <String, dynamic>{
@@ -81,4 +84,19 @@ Map<String, dynamic> _$MTextStyleToJson(MTextStyle instance) =>
       'background': instance.background,
       'fontSize': instance.fontSize,
       'fontWeight': instance.fontWeight,
+      'mTextDecoration': instance.mTextDecoration,
+    };
+
+MTextDecoration _$MTextDecorationFromJson(Map<String, dynamic> json) =>
+    MTextDecoration(
+      json['line'] as String,
+      json['lineColor'] as String,
+      json['lineStyle'] as String,
+    );
+
+Map<String, dynamic> _$MTextDecorationToJson(MTextDecoration instance) =>
+    <String, dynamic>{
+      'line': instance.line,
+      'lineColor': instance.lineColor,
+      'lineStyle': instance.lineStyle,
     };

@@ -85,10 +85,11 @@ class MItemMargin {
 
 @JsonSerializable()
 class MTextStyle {
-  String color;
-  String background;
-  String fontSize;
-  String fontWeight;
+  String? color;
+  String? background;
+  String? fontSize;
+  String? fontWeight;
+  MTextDecoration? mTextDecoration;
 
   MTextStyle(
     this.color,
@@ -103,9 +104,26 @@ class MTextStyle {
 
   TextStyle convertToTextStyle(BuildContext context) {
     return TextStyle(
-      color: ColorUtil.parseRGBA(color),
-      fontSize: convertStringToFontSize(fontSize),
-      fontWeight: convertStringToFontWeight(fontWeight),
+      color: ColorUtil.parseRGBA(color ?? ''),
+      fontSize: convertStringToFontSize(fontSize ?? ''),
+      fontWeight: convertStringToFontWeight(fontWeight ?? ''),
+      decoration: getTextDecoration(mTextDecoration?.line),
+      decorationStyle: getTextDecorationStyle(mTextDecoration?.lineStyle),
+      decorationColor: ColorUtil.parseRGBA(mTextDecoration?.lineColor),
     );
   }
+}
+
+@JsonSerializable()
+class MTextDecoration {
+  String line;
+  String lineColor;
+  String lineStyle;
+
+  MTextDecoration(this.line, this.lineColor, this.lineStyle);
+
+  factory MTextDecoration.fromJson(Map<String, dynamic> srcJson) =>
+      _$MTextDecorationFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$MTextDecorationToJson(this);
 }
