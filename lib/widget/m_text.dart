@@ -29,7 +29,7 @@ class _MTextState extends State<MText> {
       );
     }
     return Container(
-      alignment: getAlignmentGeometry(widget.mTextModel?.textAlign),
+      alignment: getAlignmentGeometry(widget.mTextModel.textAlign),
       child: Text(
         widget.mTextModel.data,
         style: widget.mTextModel.style == null
