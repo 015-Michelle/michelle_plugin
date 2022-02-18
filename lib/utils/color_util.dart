@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ColorUtil {
-  static Color parseRGBA(String rgba) {
+  static Color parseRGBA(String? rgba) {
+    if (rgba == null) {
+      return Colors.transparent;
+    }
     try {
       var rgbaValues =
           rgba.split('(').last.split(')').first.split((',')).map((e) => e.trim()).toList();
