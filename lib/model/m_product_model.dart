@@ -44,7 +44,7 @@ class ProductModel {
 
   String? imgUrl;
   String? platform;
-  String? tage; //标签
+  String? tag; //标签
 
   String? name;
   String? content;
@@ -69,7 +69,7 @@ class ProductModel {
     this.mEventList,
     this.originalPrice,
     this.platform,
-    this.tage,
+    this.tag,
     this.price,
   });
 

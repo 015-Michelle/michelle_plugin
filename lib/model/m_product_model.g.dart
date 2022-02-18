@@ -51,7 +51,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
           .toList(),
       originalPrice: json['originalPrice'] as String?,
       platform: json['platform'] as String?,
-      tage: json['tage'] as String?,
+      tag: json['tag'] as String?,
       price: json['price'] as String?,
     );
 
@@ -63,7 +63,7 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'isOnSale': instance.isOnSale,
       'imgUrl': instance.imgUrl,
       'platform': instance.platform,
-      'tage': instance.tage,
+      'tag': instance.tag,
       'name': instance.name,
       'content': instance.content,
       'price': instance.price,
