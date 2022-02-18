@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/component/render.dart';
+import 'package:michelle_plugin/model/m_base_widget_model.dart';
 import 'package:michelle_plugin/model/m_page_model.dart';
 import 'package:michelle_plugin/utils/color_util.dart';
 
@@ -27,20 +28,34 @@ class _MPageState extends State<MPage> {
             ),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: pageModel.layout.map((e) => MRender.makeupWidget(e)).toList(),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  //color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
+                  border: Border.all(color: const Color(0x00ffffff), width: 0.0),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: pageModel.layout
+                      .map((e) => MRender.makeupWidget(MBaseWidgetModel.parse(e)))
+                      .toList(),
+                ),
               ),
             ),
           )
         : Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
               border: Border.all(color: const Color(0x00ffffff), width: 0.0),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: pageModel.layout.map((e) => MRender.makeupWidget(e)).toList(),
+              children: pageModel.layout
+                  .map((e) => MRender.makeupWidget(MBaseWidgetModel.parse(e)))
+                  .toList(),
             ),
           );
   }
