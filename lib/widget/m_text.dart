@@ -16,28 +16,29 @@ class MText extends MBaseWidget {
 class _MTextState extends State<MText> {
   @override
   Widget build(BuildContext context) {
+    //todo
+    debugPrint('ttm -> m_text 参数: ${widget.mTextModel.toJson()}');
+    debugPrint('ttm -> m_text 参数: ${widget.mTextModel.style!.toJson()}');
     if (TextUtil.isEmpty(widget.mTextModel.data)) {
       return MErrorWidget(
         type: MType.text,
         text: 'MText is null or empty',
-        textStyle: widget.mTextModel.style,
+        textStyle: widget.mTextModel.style == null
+            ? null
+            : widget.mTextModel.style!.convertToTextStyle(context),
       );
     }
     return Text(
       widget.mTextModel.data,
-      key: widget.mTextModel.key,
-      style: widget.mTextModel.style,
-      strutStyle: widget.mTextModel.strutStyle,
-      textAlign: widget.mTextModel.textAlign,
-      textDirection: widget.mTextModel.textDirection,
-      locale: widget.mTextModel.locale,
+      style: widget.mTextModel.style == null
+          ? null
+          : widget.mTextModel.style!.convertToTextStyle(context),
+      textAlign: getStringAlign(widget.mTextModel.textAlign ?? ''),
       softWrap: widget.mTextModel.softWrap,
-      overflow: widget.mTextModel.overflow,
+      overflow: getTextOverflow(widget.mTextModel.overflow ?? ''),
       textScaleFactor: widget.mTextModel.textScaleFactor,
       maxLines: widget.mTextModel.maxLines,
       semanticsLabel: widget.mTextModel.semanticsLabel,
-      textWidthBasis: widget.mTextModel.textWidthBasis,
-      textHeightBehavior: widget.mTextModel.textHeightBehavior,
     );
   }
 }
