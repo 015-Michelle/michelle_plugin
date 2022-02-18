@@ -23,6 +23,8 @@ class _MImageState extends State<MImage> {
   String get _styleType => widget.mImageModel.styleType;
   List<ImageModel> get _picList => widget.mImageModel.picList;
   num get _marginSum => widget.mImageModel.mItemMargin.left + widget.mImageModel.mItemMargin.right;
+  num get _paddingSum =>
+      widget.mImageModel.mItemPadding.left + widget.mImageModel.mItemPadding.right;
   num get _spaceBetween => widget.mImageModel.spaceBetween;
 
   @override
@@ -36,30 +38,15 @@ class _MImageState extends State<MImage> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('ttm-> m_image 参数： ${widget.mImageModel.toJson()}');
     return Container(
-      //todo 待调整
-      padding: EdgeInsets.fromLTRB(
-        padding.left.toDouble(),
-        padding.top.toDouble(),
-        padding.right.toDouble(),
-        padding.bottom.toDouble(),
-      ),
       margin: EdgeInsets.fromLTRB(
         margin.left.toDouble(),
         margin.top.toDouble(),
         margin.right.toDouble(),
         margin.bottom.toDouble(),
       ),
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0x00ffffff), width: 0.0),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
-          topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
-          bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
-          bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
-        ),
-        color: ColorUtil.parseRGBA(backgroundColor),
-      ),
+      color: ColorUtil.parseRGBA(backgroundColor),
       child: _buildImageLayout(context),
     );
   }
@@ -77,6 +64,12 @@ class _MImageState extends State<MImage> {
 
   Widget _buildImageItems({int length = 1}) {
     return Container(
+      padding: EdgeInsets.fromLTRB(
+        padding.left.toDouble(),
+        padding.top.toDouble(),
+        padding.right.toDouble(),
+        padding.bottom.toDouble(),
+      ),
       decoration: BoxDecoration(border: Border.all(color: const Color(0x00ffffff), width: 0.0)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,8 +80,11 @@ class _MImageState extends State<MImage> {
   }
 
   Widget _buildImageItem(ImageModel image, {int length = 1}) {
-    var imgWidth =
-        (MediaQuery.of(context).size.width - _marginSum - (length - 1) * _spaceBetween) / length;
+    var imgWidth = (MediaQuery.of(context).size.width -
+            _marginSum -
+            _paddingSum * 2 -
+            (length - 1) * _spaceBetween) /
+        length;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -96,19 +92,13 @@ class _MImageState extends State<MImage> {
           //todo event
         }
       },
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
-          topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
-          bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
-          bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
-        ),
-        child: MCachedImage(
-          url: image.url,
-          imgWidth: imgWidth.toDouble(),
-          imgHeight: imgWidth.toDouble(), //todo 比例待调整
-          isShowError: false,
-        ),
+      child: MCachedImage(
+        url: image.url,
+        imgWidth: imgWidth.toDouble(),
+        imgHeight: imgWidth.toDouble() / 2, //todo 比例待调整
+        isShowError: false,
+        mItemBorderRadius: mItemBorderRadius,
+        boxFit: BoxFit.fill,
       ),
     );
   }
