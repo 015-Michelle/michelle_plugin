@@ -14,7 +14,6 @@ MProductModel _$MProductModelFromJson(Map<String, dynamic> json) =>
       (json['productList'] as List<dynamic>)
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      json['tag'] as String,
       MItemBorderRadius.fromJson(
           json['mItemBorderRadius'] as Map<String, dynamic>),
       MItemPadding.fromJson(json['mItemPadding'] as Map<String, dynamic>),
@@ -29,7 +28,6 @@ Map<String, dynamic> _$MProductModelToJson(MProductModel instance) =>
       'spaceBetween': instance.spaceBetween,
       'backgroundColor': instance.backgroundColor,
       'productList': instance.productList,
-      'tag': instance.tag,
       'mItemBorderRadius': instance.mItemBorderRadius,
       'mItemPadding': instance.mItemPadding,
       'mItemMargin': instance.mItemMargin,

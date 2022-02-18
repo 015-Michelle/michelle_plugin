@@ -12,7 +12,6 @@ class MProductModel extends MBaseWidgetModel {
   final num spaceBetween;
   final String backgroundColor;
   final List<ProductModel> productList;
-  final String tag;
   final MItemBorderRadius mItemBorderRadius;
   final MItemPadding mItemPadding;
   final MItemMargin mItemMargin;
@@ -24,7 +23,6 @@ class MProductModel extends MBaseWidgetModel {
     this.spaceBetween,
     this.backgroundColor,
     this.productList,
-    this.tag,
     this.mItemBorderRadius,
     this.mItemPadding,
     this.mItemMargin,
