@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/utils/size_util.dart';
 
-///----类型
+///----基本类型
 class MType {
   static const String text = 'MText';
   static const String image = 'MImage';
@@ -19,6 +19,12 @@ class MFontSizeType {
   static const String small = 'small';
   static const String medium = 'medium';
   static const String large = 'large';
+}
+
+//----组件类型
+class MImageType {
+  static const String one = '1';
+  static const String two = '2';
 }
 
 //字体大小
@@ -60,16 +66,59 @@ double? convertStringToFontSize(String fontSize) {
   }
 }
 
-TextAlign getStringAlign(String align) {
+AlignmentGeometry getAlignmentGeometry(String? align) {
   switch (align) {
     case 'left':
-      return TextAlign.start;
+      return Alignment.centerLeft;
     case 'right':
-      return TextAlign.end;
+      return Alignment.centerRight;
     case 'center':
-      return TextAlign.center;
+      return Alignment.center;
     default:
-      return TextAlign.start;
+      return Alignment.centerRight;
+  }
+}
+
+TextOverflow? getTextOverflow(String align) {
+  switch (align) {
+    case 'clip':
+      return TextOverflow.clip;
+    case 'ellipsis':
+      return TextOverflow.ellipsis;
+    case 'visible':
+      return TextOverflow.visible;
+    case 'fade':
+      return TextOverflow.fade;
+    default:
+      return null;
+  }
+}
+
+TextDecoration? getTextDecoration(String? textDecoration) {
+  switch (textDecoration) {
+    case "center":
+      return TextDecoration.lineThrough;
+    case "top":
+      return TextDecoration.overline;
+    case "bottom":
+      return TextDecoration.underline;
+    default:
+      return TextDecoration.none;
+  }
+}
+
+TextDecorationStyle? getTextDecorationStyle(String? textDecorationStyle) {
+  switch (textDecorationStyle) {
+    case "double":
+      return TextDecorationStyle.double;
+    case "wavy":
+      return TextDecorationStyle.wavy;
+    case "dashed":
+      return TextDecorationStyle.dashed;
+    case "dotted":
+      return TextDecorationStyle.dotted;
+    default:
+      return TextDecorationStyle.solid;
   }
 }
 
