@@ -28,17 +28,20 @@ class _MTextState extends State<MText> {
             : widget.mTextModel.style!.convertToTextStyle(context),
       );
     }
-    return Text(
-      widget.mTextModel.data,
-      style: widget.mTextModel.style == null
-          ? null
-          : widget.mTextModel.style!.convertToTextStyle(context),
-      textAlign: getStringAlign(widget.mTextModel.textAlign ?? ''),
-      softWrap: widget.mTextModel.softWrap,
-      overflow: getTextOverflow(widget.mTextModel.overflow ?? ''),
-      textScaleFactor: widget.mTextModel.textScaleFactor,
-      maxLines: widget.mTextModel.maxLines,
-      semanticsLabel: widget.mTextModel.semanticsLabel,
+    return Container(
+      alignment: getAlignmentGeometry(widget.mTextModel?.textAlign),
+      child: Text(
+        widget.mTextModel.data,
+        style: widget.mTextModel.style == null
+            ? null
+            : widget.mTextModel.style!.convertToTextStyle(context),
+        textAlign: TextAlign.center,
+        softWrap: widget.mTextModel.softWrap,
+        overflow: getTextOverflow(widget.mTextModel.overflow ?? ''),
+        textScaleFactor: widget.mTextModel.textScaleFactor,
+        maxLines: widget.mTextModel.maxLines,
+        semanticsLabel: widget.mTextModel.semanticsLabel,
+      ),
     );
   }
 }
