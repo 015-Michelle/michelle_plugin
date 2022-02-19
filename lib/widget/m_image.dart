@@ -3,7 +3,6 @@ import 'package:michelle_plugin/common/widget/m_cached_image.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
-import 'package:michelle_plugin/utils/color_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
 
 class MImage extends MBaseWidget {
@@ -46,7 +45,7 @@ class _MImageState extends State<MImage> {
         margin.right.toDouble(),
         margin.bottom.toDouble(),
       ),
-      color: ColorUtil.parseRGBA(backgroundColor),
+      //color: ColorUtil.parseRGBA(backgroundColor),
       child: _buildImageLayout(context),
     );
   }
