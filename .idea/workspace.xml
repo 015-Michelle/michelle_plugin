@@ -8,17 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7618b232-54a8-4d20-b961-83da7c8656b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/test_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/test_config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/test_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/test_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/m_product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/m_product_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/color_util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/color_util.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/money_util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/money_util.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/m_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/m_product.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +56,7 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../demo/stagered/flutter_staggered_grid_view" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
