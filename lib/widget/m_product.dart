@@ -113,59 +113,30 @@ class _MProductState extends State<MProduct> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Offstage(
-            offstage: !(productModel.currency != null ||
-                productModel.price != null ||
-                productModel.discount != null ||
-                productModel.originalPrice != null),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  productModel.currency ?? '￥',
-                  style: TextStyle(color: Colors.red, fontSize: 12.a, fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  productModel.price ?? '',
-                  style: TextStyle(color: Colors.red, fontSize: 18.a, fontWeight: FontWeight.w700),
-                ),
-                MWidgetStyle(
-                  text: productModel.discount,
-                  type: MWidgetStyleType.discount,
-                ),
-                if (productModel.originalPrice != null)
-                  Text(
-                    '${productModel.currency ?? '￥'}${productModel.originalPrice}',
-                    style: TextStyle(
-                      color: Colors.black26,
-                      fontSize: 12.a,
-                      fontWeight: FontWeight.w400,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-              ],
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MWidgetStyle(
+                text: productModel.price,
+                type: MWidgetStyleType.price,
+              ),
+              MWidgetStyle(
+                text: productModel.discount,
+                type: MWidgetStyleType.discount,
+              ),
+              //if (productModel.originalPrice != null)
+              MWidgetStyle(
+                text: productModel.originalPrice,
+                type: MWidgetStyleType.originalPrice,
+              ),
+            ],
           ),
-          Offstage(
-            offstage: productModel.content == null,
-            child: MWidgetStyle(text: productModel.content, type: MWidgetStyleType.content),
-          ),
-          Offstage(
-            offstage: productModel.coupon == null,
-            child: MWidgetStyle(text: productModel.coupon, type: MWidgetStyleType.coupon),
-          ),
+          MWidgetStyle(text: productModel.content, type: MWidgetStyleType.content),
+          MWidgetStyle(text: productModel.coupon, type: MWidgetStyleType.coupon),
           if (productModel.platform != null)
             Divider(color: Colors.black12, thickness: 0.5, height: 6.a),
-          Offstage(
-            offstage: productModel.platform == null,
-            child: Row(
-              children: [
-                Text(productModel.platform ?? ''),
-                const Icon(Icons.arrow_right),
-              ],
-            ),
-          ),
+          MWidgetStyle(text: productModel.platform, type: MWidgetStyleType.platform),
         ],
       ),
     );
