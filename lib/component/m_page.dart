@@ -27,12 +27,9 @@ class _MPageState extends State<MPage> {
               title: Text(pageModel.pageInfoModel.title),
             ),
             body: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  //color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
                   border: Border.all(color: const Color(0x00ffffff), width: 0.0),
                 ),
                 child: Column(
@@ -44,18 +41,19 @@ class _MPageState extends State<MPage> {
               ),
             ),
           )
-        : Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
-              border: Border.all(color: const Color(0x00ffffff), width: 0.0),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: pageModel.layout
-                  .map((e) => MRender.makeupWidget(MBaseWidgetModel.parse(e)))
-                  .toList(),
+        : SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
+                border: Border.all(color: const Color(0x00ffffff), width: 0.0),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: pageModel.layout
+                    .map((e) => MRender.makeupWidget(MBaseWidgetModel.parse(e)))
+                    .toList(),
+              ),
             ),
           );
   }
