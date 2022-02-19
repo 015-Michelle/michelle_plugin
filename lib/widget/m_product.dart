@@ -120,6 +120,7 @@ class _MProductState extends State<MProduct> {
                 productModel.originalPrice != null),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   productModel.currency ?? '￥',
@@ -133,37 +134,16 @@ class _MProductState extends State<MProduct> {
                   text: productModel.discount,
                   type: MWidgetStyleType.discount,
                 ),
-                Stack(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          productModel.currency ?? '￥',
-                          style: TextStyle(
-                              color: Colors.black26, fontSize: 12.a, fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          productModel.originalPrice ?? '',
-                          style: TextStyle(
-                            color: Colors.black26,
-                            fontSize: 12.a,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
+                if (productModel.originalPrice != null)
+                  Text(
+                    '${productModel.currency ?? '￥'}${productModel.originalPrice}',
+                    style: TextStyle(
+                      color: Colors.black26,
+                      fontSize: 12.a,
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.lineThrough,
                     ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Container(
-                        height: 2,
-                        width: double.maxFinite,
-                        color: Colors.black26,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
               ],
             ),
           ),
@@ -175,7 +155,8 @@ class _MProductState extends State<MProduct> {
             offstage: productModel.coupon == null,
             child: MWidgetStyle(text: productModel.coupon, type: MWidgetStyleType.coupon),
           ),
-          if (productModel.platform != null) const Divider(color: Colors.black12, thickness: 0.5),
+          if (productModel.platform != null)
+            Divider(color: Colors.black12, thickness: 0.5, height: 6.a),
           Offstage(
             offstage: productModel.platform == null,
             child: Row(
