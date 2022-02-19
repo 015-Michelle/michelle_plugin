@@ -27,6 +27,9 @@ class MWidgetStyleType {
   static const String coupon = 'coupon';
   static const String content = 'content';
   static const String tag = 'tag';
+  static const String platform = 'platform';
+  static const String price = 'price';
+  static const String originalPrice = 'originalPrice';
 }
 
 //----组件类型
