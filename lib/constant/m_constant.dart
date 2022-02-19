@@ -21,6 +21,14 @@ class MFontSizeType {
   static const String large = 'large';
 }
 
+//----样式类型
+class MWidgetStyleType {
+  static const String discount = 'discount';
+  static const String coupon = 'coupon';
+  static const String content = 'content';
+  static const String tag = 'tag';
+}
+
 //----组件类型
 class MImageType {
   static const String one = '1';
