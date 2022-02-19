@@ -120,6 +120,7 @@ class _MProductState extends State<MProduct> {
               MWidgetStyle(
                 text: productModel.price,
                 type: MWidgetStyleType.price,
+                currency: productModel.currency,
               ),
               MWidgetStyle(
                 text: productModel.discount,
@@ -129,6 +130,7 @@ class _MProductState extends State<MProduct> {
               MWidgetStyle(
                 text: productModel.originalPrice,
                 type: MWidgetStyleType.originalPrice,
+                currency: productModel.currency,
               ),
             ],
           ),
