@@ -3,6 +3,7 @@ import 'package:michelle_plugin/common/widget/m_cached_image.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
+import 'package:michelle_plugin/utils/size_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
 
 class MImage extends MBaseWidget {
@@ -53,37 +54,99 @@ class _MImageState extends State<MImage> {
   Widget _buildImageLayout(BuildContext context) {
     switch (_styleType) {
       case MImageType.one:
-        return _buildImageItems();
+        return _buildNormalImage();
       case MImageType.two:
-        return _buildImageItems(length: 2);
+        return _buildNormalImage(length: 2);
+      case MImageType.three:
+        return _buildNormalImage(length: 3);
+      case MImageType.twoRTwoC:
+        return _buildNormalImage(length: 4);
+      case MImageType.one_two:
+        return _buildOneTwoImage();
+      case MImageType.scroll:
+        return _buildScrollImage();
       default:
         return Container();
     }
   }
 
-  Widget _buildImageItems({int length = 1}) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(
-        padding.left.toDouble(),
-        padding.top.toDouble(),
-        padding.right.toDouble(),
-        padding.bottom.toDouble(),
-      ),
-      decoration: BoxDecoration(border: Border.all(color: const Color(0x00ffffff), width: 0.0)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: length == 1 ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
-        children: _picList.map((e) => _buildImageItem(e, length: length)).toList(),
+  Widget _buildScrollImage() {
+    return SizedBox(
+      height: 70.a,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildImageItem(
+            _picList[index],
+            length: _picList.length < 3 ? _picList.length.toDouble() : 2.5,
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(width: _spaceBetween.toDouble().a);
+        },
+        itemCount: _picList.length,
       ),
     );
   }
 
-  Widget _buildImageItem(ImageModel image, {int length = 1}) {
-    var imgWidth = (MediaQuery.of(context).size.width -
-            _marginSum -
-            _paddingSum * 2 -
-            (length - 1) * _spaceBetween) /
-        length;
+  Widget _buildOneTwoImage() {
+    var imgWidth = (MediaQuery.of(context).size.width - _marginSum) / 2 - _spaceBetween;
+    //图片数量少于3，自动转为相应展示
+    if (_picList.length < 3) {
+      return _buildNormalImage(length: _picList.length);
+    }
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0x00ffffff), width: 0.0),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ConstrainedBox(
+            constraints: BoxConstraints.expand(
+                width: imgWidth * 1.2, height: imgWidth * 0.8 + _spaceBetween),
+            child: _buildImageItem(_picList[0]),
+          ),
+          SizedBox(width: _spaceBetween.toDouble().a),
+          ConstrainedBox(
+            constraints: BoxConstraints.expand(
+                width: imgWidth * 0.8, height: imgWidth * 0.8 + _spaceBetween),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildImageItem(_picList[1], imgHeight: imgWidth * 0.4),
+                SizedBox(height: _spaceBetween.toDouble().a),
+                _buildImageItem(_picList[2], imgHeight: imgWidth * 0.4),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNormalImage({int length = 1}) {
+    return GridView.count(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: length == 4 ? 2 : length,
+      childAspectRatio: length == 4 || length == 1 ? 2 : 1.5,
+      mainAxisSpacing: _spaceBetween.toDouble().a,
+      crossAxisSpacing: _spaceBetween.toDouble().a,
+      children: _getPicListByType(length),
+    );
+  }
+
+  List<Widget> _getPicListByType(int length, {int start = 0}) {
+    List<Widget> imgList =
+        _picList.map((e) => _buildImageItem(e, length: length.toDouble())).toList();
+    return imgList.sublist(start, length);
+  }
+
+  Widget _buildImageItem(ImageModel image, {double length = 1, double? imgHeight}) {
+    var imgWidth =
+        (MediaQuery.of(context).size.width - _marginSum - (length - 1) * _spaceBetween) / length;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -93,11 +156,10 @@ class _MImageState extends State<MImage> {
       },
       child: MCachedImage(
         url: image.url,
-        imgWidth: imgWidth.toDouble(),
-        imgHeight: imgWidth.toDouble() / 2, //todo 比例待调整
+        imgWidth: imgWidth.toDouble().a,
+        imgHeight: imgHeight?.a,
         isShowError: false,
         mItemBorderRadius: mItemBorderRadius,
-        boxFit: BoxFit.fill,
       ),
     );
   }
