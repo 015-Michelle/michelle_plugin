@@ -34,8 +34,13 @@ class MWidgetStyleType {
 
 //----组件类型
 class MImageType {
-  static const String one = '1';
-  static const String two = '2';
+  //固定组合
+  static const String one = '1-1';
+  static const String two = '1-2';
+  static const String three = '1-3';
+  static const String twoRTwoC = '2-2';
+  static const String one_two = '1&2';
+  static const String scroll = "scroll";
 }
 
 //字体大小
