@@ -43,13 +43,6 @@ class MImageType {
   static const String scroll = "scroll";
 }
 
-//字体大小
-class MFontSize {
-  static double small = 12.a;
-  static double medium = 14.a;
-  static double large = 16.a;
-}
-
 //对齐方式
 class MAlign {
   static const String left = 'left';
@@ -58,7 +51,7 @@ class MAlign {
 }
 
 //----转换方法
-FontWeight? convertStringToFontWeight(String fontWeight) {
+FontWeight? convertStringToFontWeight(String? fontWeight) {
   switch (fontWeight) {
     case MFontWeightType.normal:
       return FontWeight.normal;
@@ -69,16 +62,16 @@ FontWeight? convertStringToFontWeight(String fontWeight) {
   }
 }
 
-double? convertStringToFontSize(String fontSize) {
+double? convertStringToFontSize(String? fontSize) {
   switch (fontSize) {
     case MFontSizeType.small:
-      return MFontSize.small;
+      return 16.a;
     case MFontSizeType.medium:
-      return MFontSize.medium;
+      return 20.a;
     case MFontSizeType.large:
-      return MFontSize.large;
+      return 24.a;
     default:
-      return MFontSize.medium;
+      return 20.a;
   }
 }
 
