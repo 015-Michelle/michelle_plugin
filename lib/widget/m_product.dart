@@ -38,25 +38,23 @@ class _MProductState extends State<MProduct> {
 
   //生成商品瀑布流
   Widget _buildProductList() {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.fromLTRB(
-          margin.left.toDouble(),
-          margin.top.toDouble(),
-          margin.right.toDouble(),
-          margin.bottom.toDouble(),
-        ),
-        child: MasonryGridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: spaceBetween.toDouble().a,
-          mainAxisSpacing: spaceBetween.toDouble().a,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildItem(productList[index]);
-          },
-          itemCount: productList.length,
-        ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+        margin.left.toDouble(),
+        margin.top.toDouble(),
+        margin.right.toDouble(),
+        margin.bottom.toDouble(),
+      ),
+      child: MasonryGridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisSpacing: spaceBetween.toDouble().a,
+        mainAxisSpacing: spaceBetween.toDouble().a,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildItem(productList[index]);
+        },
+        itemCount: productList.length,
       ),
     );
   }
