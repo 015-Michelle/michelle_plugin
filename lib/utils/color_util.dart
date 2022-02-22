@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorUtil {
-  static Color parseRGBA(String? rgba) {
+  static Color parseRGBO(String? rgba) {
     if (rgba == null) {
       return Colors.transparent;
     }
