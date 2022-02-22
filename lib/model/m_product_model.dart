@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_base_widget_model.dart';
+import 'package:michelle_plugin/model/m_card_model.dart';
 import 'package:michelle_plugin/model/m_event_type.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 
@@ -17,6 +18,7 @@ class MProductModel extends MBaseWidgetModel {
   final MItemMargin mItemMargin;
   final bool isNameShow;
   final String priceAlign;
+  final MCardModel? mCardModel;
 
   MProductModel(
     this.styleType,
@@ -27,8 +29,9 @@ class MProductModel extends MBaseWidgetModel {
     this.mItemPadding,
     this.mItemMargin,
     this.isNameShow,
-    this.priceAlign,
-  ) : super(mType: MType.product);
+    this.priceAlign, {
+    this.mCardModel,
+  }) : super(mType: MType.product);
 
   factory MProductModel.fromJson(Map<String, dynamic> srcJson) => _$MProductModelFromJson(srcJson);
 

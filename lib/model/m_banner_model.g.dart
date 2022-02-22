@@ -19,6 +19,9 @@ MBannerModel _$MBannerModelFromJson(Map<String, dynamic> json) => MBannerModel(
           ? null
           : IndicatorModel.fromJson(
               json['indicatorModel'] as Map<String, dynamic>),
+      mCardModel: json['mCardModel'] == null
+          ? null
+          : MCardModel.fromJson(json['mCardModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MBannerModelToJson(MBannerModel instance) =>
@@ -29,4 +32,5 @@ Map<String, dynamic> _$MBannerModelToJson(MBannerModel instance) =>
       'mItemPadding': instance.mItemPadding,
       'mItemMargin': instance.mItemMargin,
       'indicatorModel': instance.indicatorModel,
+      'mCardModel': instance.mCardModel,
     };

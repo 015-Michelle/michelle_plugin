@@ -20,6 +20,9 @@ MProductModel _$MProductModelFromJson(Map<String, dynamic> json) =>
       MItemMargin.fromJson(json['mItemMargin'] as Map<String, dynamic>),
       json['isNameShow'] as bool,
       json['priceAlign'] as String,
+      mCardModel: json['mCardModel'] == null
+          ? null
+          : MCardModel.fromJson(json['mCardModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MProductModelToJson(MProductModel instance) =>
@@ -33,6 +36,7 @@ Map<String, dynamic> _$MProductModelToJson(MProductModel instance) =>
       'mItemMargin': instance.mItemMargin,
       'isNameShow': instance.isNameShow,
       'priceAlign': instance.priceAlign,
+      'mCardModel': instance.mCardModel,
     };
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(

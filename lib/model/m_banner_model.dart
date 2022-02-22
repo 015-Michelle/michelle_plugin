@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_base_widget_model.dart';
+import 'package:michelle_plugin/model/m_card_model.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 
@@ -16,6 +17,7 @@ class MBannerModel extends MBaseWidgetModel {
   MItemPadding mItemPadding;
   MItemMargin mItemMargin;
   IndicatorModel? indicatorModel;
+  MCardModel? mCardModel;
 
   MBannerModel(
     this.imageList,
@@ -24,6 +26,7 @@ class MBannerModel extends MBaseWidgetModel {
     this.mItemMargin, {
     this.backgroundImage,
     this.indicatorModel,
+    this.mCardModel,
   }) : super(mType: MType.banner);
 
   factory MBannerModel.fromJson(Map<String, dynamic> srcJson) => _$MBannerModelFromJson(srcJson);
