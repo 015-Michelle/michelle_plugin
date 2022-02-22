@@ -8,7 +8,8 @@ import 'package:michelle_plugin/utils/text_util.dart';
 class MCard extends StatefulWidget {
   final Widget child;
   final MCardModel? mCardModel;
-  const MCard({Key? key, required this.child, this.mCardModel}) : super(key: key);
+  final AlignmentGeometry? alignment;
+  const MCard({Key? key, required this.child, this.mCardModel, this.alignment}) : super(key: key);
 
   @override
   _MCardState createState() => _MCardState();
@@ -56,6 +57,7 @@ class _MCardState extends State<MCard> {
             ? null
             : DecorationImage(image: MLocalCacheNetworkImage(mCardModel!.backgroundImage!)),
       ),
+      alignment: widget.alignment ?? Alignment.center,
       child: child,
     );
   }
