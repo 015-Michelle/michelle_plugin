@@ -18,12 +18,9 @@ MTextModel _$MTextModelFromJson(Map<String, dynamic> json) => MTextModel(
       maxLines: json['maxLines'] as int?,
       semanticsLabel: json['semanticsLabel'] as String?,
       textWidthBasis: json['textWidthBasis'] as String?,
-      mItemPadding: json['mItemPadding'] == null
+      mCardModel: json['mCardModel'] == null
           ? null
-          : MItemPadding.fromJson(json['mItemPadding'] as Map<String, dynamic>),
-      mItemMargin: json['mItemMargin'] == null
-          ? null
-          : MItemMargin.fromJson(json['mItemMargin'] as Map<String, dynamic>),
+          : MCardModel.fromJson(json['mCardModel'] as Map<String, dynamic>),
       mTextDecoration: json['mTextDecoration'] == null
           ? null
           : MTextDecoration.fromJson(
@@ -41,7 +38,6 @@ Map<String, dynamic> _$MTextModelToJson(MTextModel instance) =>
       'maxLines': instance.maxLines,
       'semanticsLabel': instance.semanticsLabel,
       'textWidthBasis': instance.textWidthBasis,
-      'mItemPadding': instance.mItemPadding,
-      'mItemMargin': instance.mItemMargin,
+      'mCardModel': instance.mCardModel,
       'mTextDecoration': instance.mTextDecoration,
     };
