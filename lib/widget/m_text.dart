@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_error_widget.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
-import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/model/m_text_model.dart';
 import 'package:michelle_plugin/utils/text_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
+import 'package:michelle_plugin/widget/m_card.dart';
 
 class MText extends MBaseWidget {
   final MTextModel mTextModel;
@@ -15,9 +15,6 @@ class MText extends MBaseWidget {
 }
 
 class _MTextState extends State<MText> {
-  MItemMargin get margin => widget.mTextModel.mItemMargin ?? MItemMargin(0, 0, 0, 0);
-  MItemPadding get padding => widget.mTextModel.mItemPadding ?? MItemPadding(0, 0, 0, 0);
-
   @override
   Widget build(BuildContext context) {
     //todo
@@ -32,20 +29,9 @@ class _MTextState extends State<MText> {
             : widget.mTextModel.style!.convertToTextStyle(context),
       );
     }
-    return Container(
+    return MCard(
       alignment: getAlignmentGeometry(widget.mTextModel.textAlign),
-      margin: EdgeInsets.fromLTRB(
-        margin.left.toDouble(),
-        margin.top.toDouble(),
-        margin.right.toDouble(),
-        margin.bottom.toDouble(),
-      ),
-      padding: EdgeInsets.fromLTRB(
-        padding.left.toDouble(),
-        padding.top.toDouble(),
-        padding.right.toDouble(),
-        padding.bottom.toDouble(),
-      ),
+      mCardModel: widget.mTextModel.mCardModel,
       child: Text(
         widget.mTextModel.data,
         style: widget.mTextModel.style == null
