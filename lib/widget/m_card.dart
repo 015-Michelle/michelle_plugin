@@ -3,7 +3,6 @@ import 'package:michelle_plugin/model/m_card_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/color_util.dart';
 import 'package:michelle_plugin/utils/m_local_cache_network_image.dart';
-import 'package:michelle_plugin/utils/text_util.dart';
 
 class MCard extends StatefulWidget {
   final Widget child;
@@ -45,9 +44,9 @@ class _MCardState extends State<MCard> {
           bottomLeft: Radius.circular(borderRadius?.bottomLeft.toDouble() ?? 0),
           bottomRight: Radius.circular(borderRadius?.bottomRight.toDouble() ?? 0),
         ),
-        border: TextUtil.isEmpty(mCardModel?.backgroundColor)
-            ? Border.all(color: ColorUtil.parseRGBO(mCardModel?.borderColor))
-            : null,
+        border: mCardModel?.borderColor == null
+            ? null
+            : Border.all(color: ColorUtil.parseRGBO(mCardModel?.borderColor)),
         gradient: mCardModel?.gradientColors == null
             ? null
             : LinearGradient(
@@ -55,7 +54,10 @@ class _MCardState extends State<MCard> {
               ),
         image: mCardModel?.backgroundImage == null
             ? null
-            : DecorationImage(image: MLocalCacheNetworkImage(mCardModel!.backgroundImage!)),
+            : DecorationImage(
+                image: MLocalCacheNetworkImage(mCardModel!.backgroundImage!),
+                fit: BoxFit.cover,
+              ),
       ),
       alignment: widget.alignment ?? Alignment.center,
       child: child,
