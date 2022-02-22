@@ -5,6 +5,7 @@ import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/size_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
+import 'package:michelle_plugin/widget/m_card.dart';
 
 class MImage extends MBaseWidget {
   final MImageModel mImageModel;
@@ -39,15 +40,18 @@ class _MImageState extends State<MImage> {
   @override
   Widget build(BuildContext context) {
     debugPrint('ttm-> m_image 参数： ${widget.mImageModel.toJson()}');
-    return Container(
-      margin: EdgeInsets.fromLTRB(
-        margin.left.toDouble(),
-        margin.top.toDouble(),
-        margin.right.toDouble(),
-        margin.bottom.toDouble(),
-      ),
+    return MCard(
       //color: ColorUtil.parseRGBA(backgroundColor),
-      child: _buildImageLayout(context),
+      mCardModel: widget.mImageModel.mCardModel,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(
+          margin.left.toDouble(),
+          margin.top.toDouble(),
+          margin.right.toDouble(),
+          margin.bottom.toDouble(),
+        ),
+        child: _buildImageLayout(context),
+      ),
     );
   }
 
@@ -91,7 +95,12 @@ class _MImageState extends State<MImage> {
   }
 
   Widget _buildOneTwoImage() {
-    var imgWidth = (MediaQuery.of(context).size.width - _marginSum) / 2 - _spaceBetween;
+    var outMarginLeft = widget.mImageModel.mCardModel?.mItemMargin?.left ?? 0;
+    var outMarginRight = widget.mImageModel.mCardModel?.mItemMargin?.right ?? 0;
+    var imgWidth =
+        (MediaQuery.of(context).size.width - _marginSum - outMarginLeft - outMarginRight) / 2 -
+            _spaceBetween -
+            1;
     //图片数量少于3，自动转为相应展示
     if (_picList.length < 3) {
       return _buildNormalImage(length: _picList.length);
