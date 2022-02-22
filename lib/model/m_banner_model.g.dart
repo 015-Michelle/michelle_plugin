@@ -15,8 +15,10 @@ MBannerModel _$MBannerModelFromJson(Map<String, dynamic> json) => MBannerModel(
       MItemPadding.fromJson(json['mItemPadding'] as Map<String, dynamic>),
       MItemMargin.fromJson(json['mItemMargin'] as Map<String, dynamic>),
       backgroundImage: json['backgroundImage'] as String?,
-      indicatorColor: json['indicatorColor'] as String?,
-      indicatorRadius: json['indicatorRadius'] as num?,
+      indicatorModel: json['indicatorModel'] == null
+          ? null
+          : IndicatorModel.fromJson(
+              json['indicatorModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MBannerModelToJson(MBannerModel instance) =>
@@ -26,6 +28,5 @@ Map<String, dynamic> _$MBannerModelToJson(MBannerModel instance) =>
       'mItemBorderRadius': instance.mItemBorderRadius,
       'mItemPadding': instance.mItemPadding,
       'mItemMargin': instance.mItemMargin,
-      'indicatorColor': instance.indicatorColor,
-      'indicatorRadius': instance.indicatorRadius,
+      'indicatorModel': instance.indicatorModel,
     };

@@ -4,6 +4,8 @@ import 'package:michelle_plugin/model/m_base_widget_model.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 
+import 'm_kingkong_area_model.dart';
+
 part 'm_banner_model.g.dart';
 
 @JsonSerializable()
@@ -13,8 +15,7 @@ class MBannerModel extends MBaseWidgetModel {
   MItemBorderRadius mItemBorderRadius;
   MItemPadding mItemPadding;
   MItemMargin mItemMargin;
-  String? indicatorColor;
-  num? indicatorRadius;
+  IndicatorModel? indicatorModel;
 
   MBannerModel(
     this.imageList,
@@ -22,8 +23,7 @@ class MBannerModel extends MBaseWidgetModel {
     this.mItemPadding,
     this.mItemMargin, {
     this.backgroundImage,
-    this.indicatorColor,
-    this.indicatorRadius,
+    this.indicatorModel,
   }) : super(mType: MType.banner);
 
   factory MBannerModel.fromJson(Map<String, dynamic> srcJson) => _$MBannerModelFromJson(srcJson);
