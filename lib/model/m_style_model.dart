@@ -104,12 +104,12 @@ class MTextStyle {
 
   TextStyle convertToTextStyle(BuildContext context) {
     return TextStyle(
-      color: ColorUtil.parseRGBA(color),
+      color: ColorUtil.parseRGBO(color),
       fontSize: convertStringToFontSize(fontSize),
       fontWeight: convertStringToFontWeight(fontWeight),
       decoration: getTextDecoration(mTextDecoration?.line),
       decorationStyle: getTextDecorationStyle(mTextDecoration?.lineStyle),
-      decorationColor: ColorUtil.parseRGBA(mTextDecoration?.lineColor),
+      decorationColor: ColorUtil.parseRGBO(mTextDecoration?.lineColor),
     );
   }
 }
