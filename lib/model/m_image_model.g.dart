@@ -17,9 +17,6 @@ MImageModel _$MImageModelFromJson(Map<String, dynamic> json) => MImageModel(
           json['mItemBorderRadius'] as Map<String, dynamic>),
       MItemPadding.fromJson(json['mItemPadding'] as Map<String, dynamic>),
       MItemMargin.fromJson(json['mItemMargin'] as Map<String, dynamic>),
-      (json['showWithIdentity'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
     );
 
 Map<String, dynamic> _$MImageModelToJson(MImageModel instance) =>
@@ -31,7 +28,6 @@ Map<String, dynamic> _$MImageModelToJson(MImageModel instance) =>
       'mItemBorderRadius': instance.mItemBorderRadius,
       'mItemPadding': instance.mItemPadding,
       'mItemMargin': instance.mItemMargin,
-      'showWithIdentity': instance.showWithIdentity,
     };
 
 ImageModel _$ImageModelFromJson(Map<String, dynamic> json) => ImageModel(

@@ -16,7 +16,6 @@ class MImageModel extends MBaseWidgetModel {
   final MItemBorderRadius mItemBorderRadius;
   final MItemPadding mItemPadding;
   final MItemMargin mItemMargin;
-  final List<String> showWithIdentity;
 
   MImageModel(
     this.styleType,
@@ -26,7 +25,6 @@ class MImageModel extends MBaseWidgetModel {
     this.mItemBorderRadius,
     this.mItemPadding,
     this.mItemMargin,
-    this.showWithIdentity,
   ) : super(mType: MType.image);
 
   factory MImageModel.fromJson(Map<String, dynamic> srcJson) => _$MImageModelFromJson(srcJson);
