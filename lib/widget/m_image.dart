@@ -136,14 +136,22 @@ class _MImageState extends State<MImage> {
   }
 
   Widget _buildNormalImage({int length = 1}) {
-    return GridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: length == 4 ? 2 : length,
-      childAspectRatio: length == 4 || length == 1 ? 2 : 1.5,
-      mainAxisSpacing: _spaceBetween.toDouble().a,
-      crossAxisSpacing: _spaceBetween.toDouble().a,
-      children: _getPicListByType(length),
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(mItemBorderRadius!.topLeft.toDouble()),
+        topRight: Radius.circular(mItemBorderRadius!.topRight.toDouble()),
+        bottomLeft: Radius.circular(mItemBorderRadius!.bottomLeft.toDouble()),
+        bottomRight: Radius.circular(mItemBorderRadius!.bottomRight.toDouble()),
+      ),
+      child: GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: length == 4 ? 2 : length,
+        childAspectRatio: length == 4 || length == 1 ? 2 : 1.5,
+        mainAxisSpacing: _spaceBetween.toDouble().a,
+        crossAxisSpacing: _spaceBetween.toDouble().a,
+        children: _getPicListByType(length),
+      ),
     );
   }
 
@@ -168,7 +176,7 @@ class _MImageState extends State<MImage> {
         imgWidth: imgWidth.toDouble().a,
         imgHeight: imgHeight?.a,
         isShowError: false,
-        mItemBorderRadius: mItemBorderRadius,
+        mItemBorderRadius: length == 4 ? null : mItemBorderRadius,
       ),
     );
   }
