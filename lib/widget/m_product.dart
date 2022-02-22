@@ -7,6 +7,7 @@ import 'package:michelle_plugin/model/m_product_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/size_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
+import 'package:michelle_plugin/widget/m_card.dart';
 
 class MProduct extends MBaseWidget {
   final MProductModel mProductModel;
@@ -30,9 +31,12 @@ class _MProductState extends State<MProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      child: _buildProductList(), //todo 可增加其他的类型商品
+    return MCard(
+      mCardModel: widget.mProductModel.mCardModel,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _buildProductList(), //todo 可增加其他的类型商品
+      ),
     );
   }
 
