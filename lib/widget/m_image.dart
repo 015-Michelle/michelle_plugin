@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
@@ -138,10 +139,10 @@ class _MImageState extends State<MImage> {
   Widget _buildNormalImage({int length = 1}) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(mItemBorderRadius!.topLeft.toDouble()),
-        topRight: Radius.circular(mItemBorderRadius!.topRight.toDouble()),
-        bottomLeft: Radius.circular(mItemBorderRadius!.bottomLeft.toDouble()),
-        bottomRight: Radius.circular(mItemBorderRadius!.bottomRight.toDouble()),
+        topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
+        topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
+        bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
+        bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
       ),
       child: GridView.count(
         shrinkWrap: true,
@@ -166,11 +167,7 @@ class _MImageState extends State<MImage> {
         (MediaQuery.of(context).size.width - _marginSum - (length - 1) * _spaceBetween) / length;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: () {
-        if (image.event != null) {
-          //todo event
-        }
-      },
+      onTap: () => MEventManager().eventHandler.onEvent(image.event),
       child: MCachedImage(
         url: image.url,
         imgWidth: imgWidth.toDouble().a,

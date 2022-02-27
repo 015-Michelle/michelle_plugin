@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
 import 'package:michelle_plugin/common/widget/m_widget_style.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_product_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
@@ -69,26 +70,29 @@ class _MProductState extends State<MProduct> {
             _marginSum -
             _paddingSum) /
         2;
-    return ClipRRect(
-      //todo use CardBorderRadius
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
-        topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
-        bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
-        bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
-      ),
-      child: Container(
-        color: Colors.white,
-        width: imgWidth.toDouble(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            //顶部商品图片
-            _buildTopImage(productModel),
-            //底部商品信息
-            _buildProductInfo(productModel),
-          ],
+    return GestureDetector(
+      onTap: () => MEventManager().eventHandler.onEvent(productModel.eventList?.first),
+      child: ClipRRect(
+        //todo use CardBorderRadius
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
+          topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
+          bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
+          bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
+        ),
+        child: Container(
+          color: Colors.white,
+          width: imgWidth.toDouble(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              //顶部商品图片
+              _buildTopImage(productModel),
+              //底部商品信息
+              _buildProductInfo(productModel),
+            ],
+          ),
         ),
       ),
     );
@@ -165,7 +169,7 @@ class _MProductState extends State<MProduct> {
           right: 0,
           child: GestureDetector(
             onTap: () {
-              debugPrint('ttm  you click button to get more-${productModel.name}');
+              debugPrint('ttm  you click button to get more-${productModel.id}');
             },
             child: Container(
               decoration: BoxDecoration(

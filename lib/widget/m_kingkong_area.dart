@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_kingkong_area_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
@@ -52,27 +53,30 @@ class _MKingKongAreaState extends State<MKingKongArea> {
   }
 
   Widget _buildIconGroupItem(IconGroupModel e, double imgWidth) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(6)),
-            child: MCachedImage(
-                url: e.url,
-                imgWidth: imgWidth > 60 ? 60 : imgWidth,
-                imgHeight: imgWidth > 60 ? 60 : imgWidth,
-                isShowError: false)),
-        SizedBox(height: _spaceBetween.toDouble()),
-        Text(
-          e.title,
-          style: TextStyle(
-            color: ColorUtil.parseRGBO(widget.mKingKongAreaModel.titleColor),
-            fontSize: 12.a,
+    return GestureDetector(
+      onTap: () => MEventManager().eventHandler.onEvent(e.event),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(6)),
+              child: MCachedImage(
+                  url: e.url,
+                  imgWidth: imgWidth > 60 ? 60 : imgWidth,
+                  imgHeight: imgWidth > 60 ? 60 : imgWidth,
+                  isShowError: false)),
+          SizedBox(height: _spaceBetween.toDouble()),
+          Text(
+            e.title,
+            style: TextStyle(
+              color: ColorUtil.parseRGBO(widget.mKingKongAreaModel.titleColor),
+              fontSize: 12.a,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
