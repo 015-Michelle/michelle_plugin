@@ -25,6 +25,9 @@ MTextModel _$MTextModelFromJson(Map<String, dynamic> json) => MTextModel(
           ? null
           : MTextDecoration.fromJson(
               json['mTextDecoration'] as Map<String, dynamic>),
+      event: json['event'] == null
+          ? null
+          : MEvent.fromJson(json['event'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MTextModelToJson(MTextModel instance) =>
@@ -40,4 +43,5 @@ Map<String, dynamic> _$MTextModelToJson(MTextModel instance) =>
       'textWidthBasis': instance.textWidthBasis,
       'mCardModel': instance.mCardModel,
       'mTextDecoration': instance.mTextDecoration,
+      'event': instance.event,
     };
