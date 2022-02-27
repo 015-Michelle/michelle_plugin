@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/model/m_banner_model.dart';
 import 'package:michelle_plugin/model/m_image_model.dart';
 import 'package:michelle_plugin/utils/color_util.dart';
@@ -68,9 +69,7 @@ class _MSlideShowState extends State<MSlideShow> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                  onTap: () {
-                    ///todo event
-                  },
+                  onTap: () => MEventManager().eventHandler.onEvent(imageList[index].event),
                   onHorizontalDragStart: (DragStartDetails dragStartDetails) {
                     timer.cancel();
                   },
