@@ -50,7 +50,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       discount: json['discount'] as String?,
       imgUrl: json['imgUrl'] as String?,
       isOnSale: json['isOnSale'] as bool?,
-      mEventList: (json['mEventList'] as List<dynamic>?)
+      eventList: (json['eventList'] as List<dynamic>?)
           ?.map((e) => MEvent.fromJson(e as Map<String, dynamic>))
           .toList(),
       originalPrice: json['originalPrice'] as String?,
@@ -75,5 +75,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'discount': instance.discount,
       'coupon': instance.coupon,
       'currency': instance.currency,
-      'mEventList': instance.mEventList,
+      'eventList': instance.eventList,
     };

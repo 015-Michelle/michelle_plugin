@@ -56,7 +56,7 @@ class ProductModel {
   String? discount;
   String? coupon;
   String? currency;
-  List<MEvent>? mEventList;
+  List<MEvent>? eventList;
 
   ProductModel(
     this.id, {
@@ -69,7 +69,7 @@ class ProductModel {
     this.discount,
     this.imgUrl,
     this.isOnSale,
-    this.mEventList,
+    this.eventList,
     this.originalPrice,
     this.platform,
     this.tag,
