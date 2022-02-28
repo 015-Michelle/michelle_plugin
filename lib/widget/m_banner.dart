@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_slideshow.dart';
+import 'package:michelle_plugin/component/m_card.dart';
 import 'package:michelle_plugin/model/m_banner_model.dart';
 import 'package:michelle_plugin/utils/m_local_cache_network_image.dart';
 import 'package:michelle_plugin/utils/text_util.dart';
-import 'package:michelle_plugin/widget/m_card.dart';
 
 class MBanner extends StatefulWidget {
   final MBannerModel mBannerModel;

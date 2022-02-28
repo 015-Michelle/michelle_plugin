@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
+import 'package:michelle_plugin/component/m_card.dart';
 import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_kingkong_area_model.dart';
@@ -7,7 +8,6 @@ import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/color_util.dart';
 import 'package:michelle_plugin/utils/size_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
-import 'package:michelle_plugin/widget/m_card.dart';
 
 class MKingKongArea extends MBaseWidget {
   final MKingKongAreaModel mKingKongAreaModel;

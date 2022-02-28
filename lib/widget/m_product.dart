@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
 import 'package:michelle_plugin/common/widget/m_widget_style.dart';
+import 'package:michelle_plugin/component/m_card.dart';
 import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_product_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 import 'package:michelle_plugin/utils/size_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
-import 'package:michelle_plugin/widget/m_card.dart';
 
 class MProduct extends MBaseWidget {
   final MProductModel mProductModel;

@@ -9,9 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7618b232-54a8-4d20-b961-83da7c8656b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/test_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/test_config.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/m_banner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/m_banner.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/m_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/component/m_card.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/m_image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/m_image.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/m_kingkong_area.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/m_kingkong_area.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widget/m_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/m_product.dart" afterDir="false" />

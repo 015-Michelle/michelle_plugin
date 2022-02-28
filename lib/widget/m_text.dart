@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_error_widget.dart';
+import 'package:michelle_plugin/component/m_card.dart';
 import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_text_model.dart';
 import 'package:michelle_plugin/utils/text_util.dart';
 import 'package:michelle_plugin/widget/m_base_widget.dart';
-import 'package:michelle_plugin/widget/m_card.dart';
 
 class MText extends MBaseWidget {
   final MTextModel mTextModel;
