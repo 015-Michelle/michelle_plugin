@@ -8,6 +8,8 @@ class MType {
   static const String text = 'MText';
   static const String image = 'MImage';
   static const String product = 'MProduct';
+  static const String banner = 'MBanner';
+  static const String kingKongArea = 'MKingKongArea';
 }
 
 class MFontWeightType {
@@ -27,19 +29,20 @@ class MWidgetStyleType {
   static const String coupon = 'coupon';
   static const String content = 'content';
   static const String tag = 'tag';
+  static const String platform = 'platform';
+  static const String price = 'price';
+  static const String originalPrice = 'originalPrice';
 }
 
 //----组件类型
 class MImageType {
-  static const String one = '1';
-  static const String two = '2';
-}
-
-//字体大小
-class MFontSize {
-  static double small = 12.a;
-  static double medium = 14.a;
-  static double large = 16.a;
+  //固定组合
+  static const String one = '1-1';
+  static const String two = '1-2';
+  static const String three = '1-3';
+  static const String twoRTwoC = '2-2';
+  static const String one_two = '1&2';
+  static const String scroll = "scroll";
 }
 
 //对齐方式
@@ -50,7 +53,7 @@ class MAlign {
 }
 
 //----转换方法
-FontWeight? convertStringToFontWeight(String fontWeight) {
+FontWeight? convertStringToFontWeight(String? fontWeight) {
   switch (fontWeight) {
     case MFontWeightType.normal:
       return FontWeight.normal;
@@ -61,16 +64,16 @@ FontWeight? convertStringToFontWeight(String fontWeight) {
   }
 }
 
-double? convertStringToFontSize(String fontSize) {
+double? convertStringToFontSize(String? fontSize) {
   switch (fontSize) {
     case MFontSizeType.small:
-      return MFontSize.small;
+      return 16.a;
     case MFontSizeType.medium:
-      return MFontSize.medium;
+      return 20.a;
     case MFontSizeType.large:
-      return MFontSize.large;
+      return 24.a;
     default:
-      return MFontSize.medium;
+      return 20.a;
   }
 }
 

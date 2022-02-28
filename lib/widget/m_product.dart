@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:michelle_plugin/common/widget/m_cached_image.dart';
 import 'package:michelle_plugin/common/widget/m_widget_style.dart';
+import 'package:michelle_plugin/component/m_card.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_product_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
@@ -30,33 +32,34 @@ class _MProductState extends State<MProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      child: _buildProductList(), //todo 可增加其他的类型商品
+    return MCard(
+      mCardModel: widget.mProductModel.mCardModel,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _buildProductList(), //todo 可增加其他的类型商品
+      ),
     );
   }
 
   //生成商品瀑布流
   Widget _buildProductList() {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.fromLTRB(
-          margin.left.toDouble(),
-          margin.top.toDouble(),
-          margin.right.toDouble(),
-          margin.bottom.toDouble(),
-        ),
-        child: MasonryGridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: spaceBetween.toDouble().a,
-          mainAxisSpacing: spaceBetween.toDouble().a,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildItem(productList[index]);
-          },
-          itemCount: productList.length,
-        ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+        margin.left.toDouble(),
+        margin.top.toDouble(),
+        margin.right.toDouble(),
+        margin.bottom.toDouble(),
+      ),
+      child: MasonryGridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisSpacing: spaceBetween.toDouble().a,
+        mainAxisSpacing: spaceBetween.toDouble().a,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildItem(productList[index]);
+        },
+        itemCount: productList.length,
       ),
     );
   }
@@ -67,26 +70,29 @@ class _MProductState extends State<MProduct> {
             _marginSum -
             _paddingSum) /
         2;
-    return ClipRRect(
-      //todo use CardBorderRadius
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
-        topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
-        bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
-        bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
-      ),
-      child: Container(
-        color: Colors.white,
-        width: imgWidth.toDouble(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            //顶部商品图片
-            _buildTopImage(productModel),
-            //底部商品信息
-            _buildProductInfo(productModel),
-          ],
+    return GestureDetector(
+      onTap: () => MEventManager().eventHandler.onEvent(productModel.eventList?.first),
+      child: ClipRRect(
+        //todo use CardBorderRadius
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(mItemBorderRadius.topLeft.toDouble()),
+          topRight: Radius.circular(mItemBorderRadius.topRight.toDouble()),
+          bottomLeft: Radius.circular(mItemBorderRadius.bottomLeft.toDouble()),
+          bottomRight: Radius.circular(mItemBorderRadius.bottomRight.toDouble()),
+        ),
+        child: Container(
+          color: Colors.white,
+          width: imgWidth.toDouble(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              //顶部商品图片
+              _buildTopImage(productModel),
+              //底部商品信息
+              _buildProductInfo(productModel),
+            ],
+          ),
         ),
       ),
     );
@@ -113,78 +119,32 @@ class _MProductState extends State<MProduct> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Offstage(
-            offstage: !(productModel.currency != null ||
-                productModel.price != null ||
-                productModel.discount != null ||
-                productModel.originalPrice != null),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  productModel.currency ?? '￥',
-                  style: TextStyle(color: Colors.red, fontSize: 12.a, fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  productModel.price ?? '',
-                  style: TextStyle(color: Colors.red, fontSize: 18.a, fontWeight: FontWeight.w700),
-                ),
-                MWidgetStyle(
-                  text: productModel.discount,
-                  type: MWidgetStyleType.discount,
-                ),
-                Stack(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          productModel.currency ?? '￥',
-                          style: TextStyle(
-                              color: Colors.black26, fontSize: 12.a, fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          productModel.originalPrice ?? '',
-                          style: TextStyle(
-                            color: Colors.black26,
-                            fontSize: 12.a,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Container(
-                        height: 2,
-                        width: double.maxFinite,
-                        color: Colors.black26,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MWidgetStyle(
+                text: productModel.price,
+                type: MWidgetStyleType.price,
+                currency: productModel.currency,
+              ),
+              MWidgetStyle(
+                text: productModel.discount,
+                type: MWidgetStyleType.discount,
+              ),
+              //if (productModel.originalPrice != null)
+              MWidgetStyle(
+                text: productModel.originalPrice,
+                type: MWidgetStyleType.originalPrice,
+                currency: productModel.currency,
+              ),
+            ],
           ),
-          Offstage(
-            offstage: productModel.content == null,
-            child: MWidgetStyle(text: productModel.content, type: MWidgetStyleType.content),
-          ),
-          Offstage(
-            offstage: productModel.coupon == null,
-            child: MWidgetStyle(text: productModel.coupon, type: MWidgetStyleType.coupon),
-          ),
-          if (productModel.platform != null) const Divider(color: Colors.black12, thickness: 0.5),
-          Offstage(
-            offstage: productModel.platform == null,
-            child: Row(
-              children: [
-                Text(productModel.platform ?? ''),
-                const Icon(Icons.arrow_right),
-              ],
-            ),
-          ),
+          MWidgetStyle(text: productModel.content, type: MWidgetStyleType.content),
+          MWidgetStyle(text: productModel.coupon, type: MWidgetStyleType.coupon),
+          if (productModel.platform != null)
+            Divider(color: Colors.black12, thickness: 0.5, height: 6.a),
+          MWidgetStyle(text: productModel.platform, type: MWidgetStyleType.platform),
         ],
       ),
     );
@@ -209,7 +169,7 @@ class _MProductState extends State<MProduct> {
           right: 0,
           child: GestureDetector(
             onTap: () {
-              debugPrint('ttm  you click button to get more-${productModel.name}');
+              debugPrint('ttm  you click button to get more-${productModel.id}');
             },
             child: Container(
               decoration: BoxDecoration(

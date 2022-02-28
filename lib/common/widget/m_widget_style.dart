@@ -5,7 +5,9 @@ import 'package:michelle_plugin/utils/size_util.dart';
 class MWidgetStyle extends StatelessWidget {
   final String? text;
   final String type;
-  const MWidgetStyle({Key? key, required this.text, required this.type}) : super(key: key);
+  final String? currency;
+  const MWidgetStyle({Key? key, required this.text, required this.type, this.currency})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,13 @@ class MWidgetStyle extends StatelessWidget {
       return Container();
     }
     return Container(
-      margin: EdgeInsets.symmetric(vertical: type == MWidgetStyleType.tag ? 0 : 2.a),
+      margin: EdgeInsets.symmetric(
+        vertical: type == MWidgetStyleType.tag
+            ? 0
+            : type == MWidgetStyleType.platform
+                ? 4.a
+                : 2.a,
+      ),
       child: _buildContent(),
     );
   }
@@ -40,7 +48,7 @@ class MWidgetStyle extends StatelessWidget {
           child: Text(
             "$text",
             style: TextStyle(
-              color: Colors.lightBlueAccent,
+              color: Colors.deepPurple,
               fontSize: 12.a,
               fontWeight: FontWeight.w400,
               height: 1.5,
@@ -50,31 +58,77 @@ class MWidgetStyle extends StatelessWidget {
           ),
         );
       case MWidgetStyleType.tag:
-        return Container(
-          height: 30.a,
-          width: 30.a,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(22.a),
-              bottomRight: Radius.circular(22.a),
+        return _buildTagItem();
+      case MWidgetStyleType.platform:
+        return Row(
+          children: [
+            Icon(Icons.ac_unit, color: Colors.black12, size: 16.a),
+            SizedBox(width: 2.a),
+            Text(
+              '$text',
+              style: TextStyle(color: Colors.black, fontSize: 14.a, fontWeight: FontWeight.w300),
             ),
-            gradient: const LinearGradient(
-              colors: [Colors.orange, Colors.deepOrange, Colors.red],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            ),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 2.a, vertical: 1.a),
-          alignment: Alignment.center,
-          child: Text(
-            "$text",
-            style: TextStyle(color: Colors.white, fontSize: 12.a, fontWeight: FontWeight.w300),
-            textAlign: TextAlign.center,
-          ),
+            Icon(Icons.chevron_right, color: Colors.blueGrey, size: 16.a),
+          ],
         );
+      case MWidgetStyleType.price:
+        return _buildPriceStyle();
+      case MWidgetStyleType.originalPrice:
+        return _buildPriceStyle(isOriginalPrice: true);
       default:
         return Text("$text", style: const TextStyle(color: Colors.black));
     }
+  }
+
+  Widget _buildPriceStyle({bool isOriginalPrice = false}) {
+    return RichText(
+      text: TextSpan(
+        text: currency ?? '￥',
+        style: TextStyle(
+          color: isOriginalPrice ? Colors.black26 : Colors.red,
+          fontSize: 12.a,
+          fontWeight: isOriginalPrice ? FontWeight.w400 : FontWeight.w700,
+          decoration: isOriginalPrice ? TextDecoration.lineThrough : null,
+        ),
+        children: [
+          TextSpan(
+            text: text ?? '',
+            style: isOriginalPrice
+                ? null
+                : TextStyle(
+                    color: Colors.red,
+                    fontSize: 16.a,
+                    fontWeight: FontWeight.w700,
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTagItem() {
+    return Container(
+      height: 30.a,
+      width: 30.a,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(22.a),
+          bottomRight: Radius.circular(22.a),
+        ),
+        gradient: const LinearGradient(
+          colors: [Colors.orange, Colors.deepOrange, Colors.red],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 2.a, vertical: 1.a),
+      alignment: Alignment.center,
+      child: Text(
+        "$text",
+        style: TextStyle(color: Colors.white, fontSize: 12.a, fontWeight: FontWeight.w300),
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 
   Widget _buildWidgetStyle(

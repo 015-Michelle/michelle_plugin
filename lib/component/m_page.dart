@@ -22,7 +22,7 @@ class _MPageState extends State<MPage> {
   Widget build(BuildContext context) {
     return isFullPage
         ? Scaffold(
-            backgroundColor: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
+            backgroundColor: ColorUtil.parseRGBO(pageModel.pageInfoModel.backgroundColor),
             appBar: AppBar(
               title: Text(pageModel.pageInfoModel.title),
             ),
@@ -45,7 +45,7 @@ class _MPageState extends State<MPage> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: ColorUtil.parseRGBA(pageModel.pageInfoModel.backgroundColor),
+                color: ColorUtil.parseRGBO(pageModel.pageInfoModel.backgroundColor),
                 border: Border.all(color: const Color(0x00ffffff), width: 0.0),
               ),
               child: Column(

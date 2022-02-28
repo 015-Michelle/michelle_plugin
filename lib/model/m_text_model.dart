@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_base_widget_model.dart';
+import 'package:michelle_plugin/model/m_card_model.dart';
+import 'package:michelle_plugin/model/m_event_type.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 
 part 'm_text_model.g.dart';
@@ -17,9 +18,9 @@ class MTextModel extends MBaseWidgetModel {
   int? maxLines;
   String? semanticsLabel;
   String? textWidthBasis;
-  MItemPadding? mItemPadding;
-  MItemMargin? mItemMargin;
+  MCardModel? mCardModel;
   MTextDecoration? mTextDecoration;
+  MEvent? event;
 
   MTextModel(
     this.data, {
@@ -31,9 +32,9 @@ class MTextModel extends MBaseWidgetModel {
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,
-    this.mItemPadding,
-    this.mItemMargin,
+    this.mCardModel,
     this.mTextDecoration,
+    this.event,
   }) : super(mType: MType.text);
 
   factory MTextModel.fromJson(Map<String, dynamic> json) => _$MTextModelFromJson(json);

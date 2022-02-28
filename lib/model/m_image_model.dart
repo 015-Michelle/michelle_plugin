@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_base_widget_model.dart';
+import 'package:michelle_plugin/model/m_card_model.dart';
 import 'package:michelle_plugin/model/m_style_model.dart';
 
 import 'm_event_type.dart';
@@ -16,7 +17,7 @@ class MImageModel extends MBaseWidgetModel {
   final MItemBorderRadius mItemBorderRadius;
   final MItemPadding mItemPadding;
   final MItemMargin mItemMargin;
-  final List<String> showWithIdentity;
+  final MCardModel? mCardModel;
 
   MImageModel(
     this.styleType,
@@ -25,9 +26,9 @@ class MImageModel extends MBaseWidgetModel {
     this.picList,
     this.mItemBorderRadius,
     this.mItemPadding,
-    this.mItemMargin,
-    this.showWithIdentity,
-  ) : super(mType: MType.image);
+    this.mItemMargin, {
+    this.mCardModel,
+  }) : super(mType: MType.image);
 
   factory MImageModel.fromJson(Map<String, dynamic> srcJson) => _$MImageModelFromJson(srcJson);
 

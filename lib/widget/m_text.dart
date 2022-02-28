@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:michelle_plugin/common/widget/m_error_widget.dart';
+import 'package:michelle_plugin/component/m_card.dart';
+import 'package:michelle_plugin/component/m_event_manager.dart';
 import 'package:michelle_plugin/constant/m_constant.dart';
 import 'package:michelle_plugin/model/m_text_model.dart';
 import 'package:michelle_plugin/utils/text_util.dart';
@@ -28,8 +30,16 @@ class _MTextState extends State<MText> {
             : widget.mTextModel.style!.convertToTextStyle(context),
       );
     }
-    return Container(
+    return MCard(
       alignment: getAlignmentGeometry(widget.mTextModel.textAlign),
+      mCardModel: widget.mTextModel.mCardModel,
+      child: _buildText(context),
+    );
+  }
+
+  Widget _buildText(BuildContext context) {
+    return GestureDetector(
+      onTap: () => MEventManager().eventHandler.onEvent(widget.mTextModel.event),
       child: Text(
         widget.mTextModel.data,
         style: widget.mTextModel.style == null

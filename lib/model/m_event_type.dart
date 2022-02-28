@@ -4,7 +4,7 @@ part 'm_event_type.g.dart';
 
 enum MEventType {
   url,
-  product,
+  appPage,
   custom,
   empty,
   copyAndLink,
@@ -22,14 +22,11 @@ class MEvent {
   //事件类型
   MEventType type;
   //参数
-  String config;
-  String? name;
-  //打点属性
-  String? tag;
+  String arguments;
   //额外参数
   List? eventElse;
 
-  MEvent(this.type, this.config, {this.name, this.tag, this.eventElse});
+  MEvent(this.type, this.arguments, {this.eventElse});
 
   factory MEvent.fromJson(Map<String, dynamic> srcJson) => _$MEventFromJson(srcJson);
 

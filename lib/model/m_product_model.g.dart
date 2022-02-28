@@ -20,6 +20,9 @@ MProductModel _$MProductModelFromJson(Map<String, dynamic> json) =>
       MItemMargin.fromJson(json['mItemMargin'] as Map<String, dynamic>),
       json['isNameShow'] as bool,
       json['priceAlign'] as String,
+      mCardModel: json['mCardModel'] == null
+          ? null
+          : MCardModel.fromJson(json['mCardModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MProductModelToJson(MProductModel instance) =>
@@ -33,6 +36,7 @@ Map<String, dynamic> _$MProductModelToJson(MProductModel instance) =>
       'mItemMargin': instance.mItemMargin,
       'isNameShow': instance.isNameShow,
       'priceAlign': instance.priceAlign,
+      'mCardModel': instance.mCardModel,
     };
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
@@ -46,7 +50,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       discount: json['discount'] as String?,
       imgUrl: json['imgUrl'] as String?,
       isOnSale: json['isOnSale'] as bool?,
-      mEventList: (json['mEventList'] as List<dynamic>?)
+      eventList: (json['eventList'] as List<dynamic>?)
           ?.map((e) => MEvent.fromJson(e as Map<String, dynamic>))
           .toList(),
       originalPrice: json['originalPrice'] as String?,
@@ -71,5 +75,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'discount': instance.discount,
       'coupon': instance.coupon,
       'currency': instance.currency,
-      'mEventList': instance.mEventList,
+      'eventList': instance.eventList,
     };
